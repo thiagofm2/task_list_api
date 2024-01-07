@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import UserController from './app/controllers/UserController.js';
+import TaskController from './app/controllers/TaskController.js';
 import SessionController from './app/controllers/SessionController.js';
 import authMiddleware from './app/middlewares/auth.js';
 
@@ -10,13 +11,7 @@ routes.put('/user', authMiddleware, UserController.update);
 
 routes.post('/login', SessionController.store);
 
-// routes.get('/login', async (req, res) => {
-//     const user = await User.create({
-//         name: 'Thiago',
-//         email: 'thiago@teste.com',
-//         password_hash: '123456',
-//     });
+routes.get('/tasks', authMiddleware, TaskController.store);
+routes.post('/tasks', authMiddleware, TaskController.store);
 
-//     res.json(user);
-// });
 export default routes;
